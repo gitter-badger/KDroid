@@ -26,11 +26,13 @@ abstract class KAdapter<D>(dataList: List<D>) : HolderView.Factory<D>(dataList) 
 
     companion object {
         fun <D> singleLayout(dataList: List<D>, @LayoutRes layoutRes: Int, convertFunc: HolderView<D>.(D, Int) -> Unit): KAdapter<D> =
+                with(dataList) { container, _ -> HolderView.with(container, layoutRes, convertFunc) }
+
+        fun <D> with(dataList: List<D>, func: (ViewGroup, Int) -> HolderView<D>): KAdapter<D> =
                 object : KAdapter<D>(dataList) {
-                    override fun createView(container: ViewGroup, position: Int) =
-                            object : HolderView<D>(container, layoutRes) {
-                                override fun convert(data: D, position: Int) = convertFunc(data, position)
-                            }
+                    override fun createView(container: ViewGroup, position: Int): HolderView<D> {
+                        return func(container, position)
+                    }
                 }
     }
 }

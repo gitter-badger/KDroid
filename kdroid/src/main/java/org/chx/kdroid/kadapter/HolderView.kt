@@ -16,6 +16,13 @@ abstract class HolderView<in D>(itemView: View) : LinearLayout(itemView.context)
 
     abstract fun convert(data: D, position: Int)
 
+    companion object {
+        fun <D> with(container: ViewGroup, layoutRes: Int, func: HolderView<D>.(D, Int) -> Unit): HolderView<D> =
+                object : HolderView<D>(container, layoutRes) {
+                    override fun convert(data: D, position: Int) = func(data, position)
+                }
+    }
+
     abstract class Factory<D>(dataList: List<D>) : List<D> by dataList {
         abstract fun createView(container: ViewGroup, position: Int): HolderView<D>
 
