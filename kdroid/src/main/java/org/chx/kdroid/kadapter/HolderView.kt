@@ -12,13 +12,11 @@ abstract class HolderView<in D>(itemView: View) : LinearLayout(itemView.context)
         this.addView(itemView)
     }
 
-    constructor(container: ViewGroup, layoutRes: Int) : this(container.inflateLayout(layoutRes, false))
-
     abstract fun convert(data: D, position: Int)
 
     companion object {
         fun <D> with(container: ViewGroup, layoutRes: Int, func: HolderView<D>.(D, Int) -> Unit): HolderView<D> =
-                object : HolderView<D>(container, layoutRes) {
+                object : HolderView<D>(container.inflateLayout(layoutRes, false)) {
                     override fun convert(data: D, position: Int) = func(data, position)
                 }
     }

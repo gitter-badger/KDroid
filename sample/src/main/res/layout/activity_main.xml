@@ -7,10 +7,25 @@
     android:orientation="vertical"
     tools:context="org.chx.kdroid.sample.MainActivity">
 
-    <Button
-        android:text="Adapter"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content">
+        <Button
+            android:text="Adapt   Adapter\nAdapter"
+            android:layout_width="240px"
+            android:gravity="right"
+            android:textSize="28px"
+            android:background="@color/colorAccent"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:text="Adapter"
+            android:layout_width="240px"
+            android:gravity="right"
+            android:textSize="28px"
+            android:background="@color/colorPrimaryDark"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
 
     <ListView
         android:id="@+id/vListView"

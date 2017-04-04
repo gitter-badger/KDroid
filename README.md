@@ -84,12 +84,12 @@ text.notNullOrEmpty {
  */
 val view = context.inflateLayout(layoutResId, container, attachToRoot)
 
-// container.inflateLayout(layoutResId, attchRoot)
+container.inflateLayout(layoutResId, attchToRoot)
 ```
 
 ### Date
 ```kotlin
-val text = 1490761489.toMillis().toDateString("yyyy年MM月dd日")
+val text = 1490761489L.toMillis().toDateString("yyyy年MM月dd日")
 
 val calendar = System.currentTimeMillis().toCalendar()
 ```

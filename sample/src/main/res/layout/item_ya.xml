@@ -4,21 +4,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
-    android:padding="8dp">
+    android:layout_height="100px"
+    android:padding="16px">
 
     <TextView
         android:id="@+id/vTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Title"/>
+        android:textSize="24px"
+        tools:text="Title13"/>
 
     <TextView
         android:id="@+id/vDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        tools:text="Description"/>
+        android:textSize="24px"
+        tools:text="Description13"/>
 
     <TextView
         android:id="@+id/vDetail"
@@ -26,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        tools:text="Detail"/>
+        android:textSize="24px"
+        tools:text="Detail13"/>
 
 </RelativeLayout>

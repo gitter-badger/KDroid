@@ -6,6 +6,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.item_user.view.vUserName
 import kotlinx.android.synthetic.main.item_ya.view.*
 import org.chx.kandroid.R
+import org.chx.kdroid.autolayout.DesignLayout
 import org.chx.kdroid.kadapter.HolderView
 import org.chx.kdroid.kadapter.KAdapter
 import org.chx.kdroid.kadapter.adapter.adapt
@@ -15,8 +16,10 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val design = DesignLayout(this, 480)
+        design.auto(window.decorView)
 
-        val dataList = (1..16).map { YaData(Math.random() > 0.5, "Title$it", "Description$it", "Detail$it") }
+        val dataList = (1..64).map { YaData(Math.random() > 0.5, "Title$it", "Description$it", "Detail$it") }
 
         KAdapter.with(dataList) { container, position ->
             if (dataList[position].isUser) {
@@ -25,10 +28,12 @@ class MainActivity : Activity() {
                     vUserDescription.text = data.description
                 }
             } else {
-                HolderView.with(container, R.layout.item_ya) { data, _ ->
+                HolderView.with<YaData>(container, R.layout.item_ya) { data, _ ->
                     vTitle.text = data.title
                     vDescription.text = data.description
                     vDetail.text = data.detail
+                }.apply {
+                    design.auto(this)
                 }
             }
         }.adapt(vListView)
